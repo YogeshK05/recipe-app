@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -16,7 +19,9 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
-import { HttpClientModule } from '@angular/common/http';
+import { AuthComponent } from './auth/auth.component';
+import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { AuthErrorComponent } from './auth/auth-error/auth-error.component';
 
 @NgModule({
   declarations: [
@@ -26,20 +31,27 @@ import { HttpClientModule } from '@angular/common/http';
     RecipesListComponent,
     RecipesItemComponent,
     RecipesDetailsComponent,
+    RecipeStartComponent,
+    RecipeEditComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
     DropdownDirective,
-    RecipeStartComponent,
-    RecipeEditComponent,
+    AuthComponent,
+    AuthErrorComponent,
   ],
   imports: [
+    MatProgressSpinnerModule,
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
   ],
-  providers: [RecipesService, ShoppingListService],
+  providers: [RecipesService, ShoppingListService, {
+    provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
