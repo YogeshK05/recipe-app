@@ -1,11 +1,14 @@
 import { NgModule } from "@angular/core";
 import { DirectivesModule } from "./directives/directives.module";
-import { DataStorageService } from "./data-storage.service";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { LoadingSpinnerComponent } from "../auth/loading-spinner/loading-spinner.component";
 
 @NgModule({
-  declarations: [],
-  providers:[DataStorageService],
-  imports: [DirectivesModule,],
-  exports: [],
+  providers:[],
+  declarations: [LoadingSpinnerComponent],
+  imports: [DirectivesModule,CommonModule, FormsModule, ReactiveFormsModule, MatProgressSpinnerModule],
+  exports: [DirectivesModule,CommonModule, FormsModule, ReactiveFormsModule, MatProgressSpinnerModule, LoadingSpinnerComponent],
 })
 export class SharedModule{}

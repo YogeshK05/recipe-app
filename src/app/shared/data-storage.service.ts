@@ -9,7 +9,8 @@ import { exhaustMap, map, take, tap } from 'rxjs/operators';
 export class DataStorageService {
   myUrl =
     // 'https://recipe-app-20d0f-default-rtdb.asia-southeast1.firebasedatabase.app/recipes.json';
-    'https://recipe-app-6d143-default-rtdb.asia-southeast1.firebasedatabase.app/recipes.json';
+    // 'https://recipe-app-6d143-default-rtdb.asia-southeast1.firebasedatabase.app/recipes.json';
+    'https://recipe-e9a91-default-rtdb.asia-southeast1.firebasedatabase.app/recipes.json';
   recipes: Recipe[];
 
   constructor(
